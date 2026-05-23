@@ -6,186 +6,201 @@
   <title>CHOLOTO — Dòmi pòv, leve rich</title>
   <meta name="description" content="CHOLOTO — Plateforme de prédiction de loterie premium. Résultats quotidiens, prédictions, tchala, saints. Disponible sur iOS & Android." />
 
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="CHOLOTO — Dòmi pòv, leve rich" />
+  <meta property="og:description" content="Plateforme de prédiction de loterie premium en Haïti. Résultats live et Tchala digital." />
+  <meta property="og:image" content="Logo_Choloto_509.png" />
+
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="Logo_Choloto_509.png">
+  <link rel="icon" type="image/x-icon" href="Logo_Choloto_509.ico">
   
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800;900&family=Syne:wght@800&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #03060b;
-      --surface: #0a0f18;
+      --bg: #030509;
+      --surface: #0a111f;
       --accent: #F8BB00;
       --accent-rgb: 248, 187, 0;
-      --muted: #94a3b8;
-      --border: rgba(255, 255, 255, 0.08);
-      --glass: rgba(15, 23, 42, 0.6);
-      --max-w: 1200px;
-      --radius-lg: 24px;
-      --radius-sm: 12px;
+      --muted: #8e9db3;
+      --border: rgba(255, 255, 255, 0.06);
+      --glass: rgba(10, 17, 31, 0.7);
+      --max-w: 1140px;
+      --radius-lg: 28px;
+      --radius-sm: 14px;
+      --font-main: 'Inter', sans-serif;
+      --font-heading: 'Outfit', sans-serif;
+      --font-accent: 'Syne', sans-serif;
     }
 
     /* Base Reset */
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     html, body { height: 100%; scroll-behavior: smooth; background: var(--bg); color: #f1f5f9; -webkit-font-smoothing: antialiased; }
-    body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
+    body { font-family: var(--font-main); overflow-x: hidden; }
     ul { list-style: none; }
-    a { text-decoration: none; color: inherit; transition: 0.3s; }
+    a { text-decoration: none; color: inherit; transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
     button { font-family: inherit; }
 
-    /* Premium Background */
+    /* Visual Background Elements */
     .bg-visual { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
-    .top-blur-fade {
-      position: fixed; top: 0; left: 0; right: 0; height: 100px;
-      z-index: 90; pointer-events: none;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      mask-image: linear-gradient(to bottom, black 40%, transparent);
-      -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent);
+    .bg-visual::after {
+      content: "";
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.04; mix-blend-mode: overlay;
     }
-    .bg-glow { position: absolute; width: 100vw; height: 100vw; background: radial-gradient(circle at center, rgba(var(--accent-rgb), 0.08), transparent 60%); top: -50vw; left: -20vw; filter: blur(100px); animation: pulse 20s infinite alternate; }
-    .bg-glow-2 { position: absolute; width: 80vw; height: 80vw; background: radial-gradient(circle at center, rgba(122, 252, 255, 0.03), transparent 60%); bottom: -40vw; right: -10vw; filter: blur(100px); }
-    @keyframes pulse { from { opacity: 0.5; transform: scale(1); } to { opacity: 0.8; transform: scale(1.1); } }
+    .top-blur-fade {
+      position: fixed; top: 0; left: 0; right: 0; height: 120px;
+      z-index: 90; pointer-events: none;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      mask-image: linear-gradient(to bottom, black 20%, transparent);
+      -webkit-mask-image: linear-gradient(to bottom, black 20%, transparent);
+    }
+    .bg-glow { position: absolute; width: 80vw; height: 80vw; background: radial-gradient(circle at center, rgba(var(--accent-rgb), 0.12), transparent 70%); top: -30vw; left: -10vw; filter: blur(80px); animation: pulse 12s infinite alternate ease-in-out; }
+    .bg-glow-2 { position: absolute; width: 60vw; height: 60vw; background: radial-gradient(circle at center, rgba(56, 189, 248, 0.06), transparent 70%); bottom: -20vw; right: -10vw; filter: blur(80px); }
+    @keyframes pulse { from { opacity: 0.4; transform: scale(1) translate(0, 0); } to { opacity: 0.7; transform: scale(1.1) translate(20px, 20px); } }
 
     .container { width: min(var(--max-w), 100% - 48px); margin: 0 auto; }
 
-    /* -------------------------
-       Header Styling
-       ------------------------- */
-    header {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 0;
-      transition: padding 0.4s, background 0.4s;
-    }
-    header.scrolled { padding: 8px 0; }
+    /* Reveal Animations */
+    .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .stagger-1 { transition-delay: 0.1s; }
+    .stagger-2 { transition-delay: 0.2s; }
+    .stagger-3 { transition-delay: 0.3s; }
+
+    /* Header Styling */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 0; transition: all 0.4s; }
+    header.scrolled { padding: 12px 0; }
 
     .header-inner {
       background: var(--glass);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border: 1px solid var(--border);
       border-radius: 100px;
-      padding: 6px 10px 6px 20px;
+      padding: 8px 10px 8px 24px;
       display: grid;
       grid-template-columns: 1fr auto 1fr;
       align-items: center;
       transition: all 0.4s;
-      box-shadow: 0 4px 30px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
     }
-    header.scrolled .header-inner {
-        background: rgba(8, 13, 22, 0.9);
-        border-color: rgba(var(--accent-rgb), 0.15);
-        box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-    }
+    header.scrolled .header-inner { background: rgba(5, 8, 15, 0.85); border-color: rgba(var(--accent-rgb), 0.2); }
 
-    .brand { display: flex; align-items: center; gap: 10px; }
-    .logo-sq { width: 32px; height: 32px; border-radius: 8px; background: var(--accent); color: #07203a; display: grid; place-items: center; font-weight: 900; font-size: 18px; }
-    .brand-name { font-weight: 800; font-size: 18px; letter-spacing: -0.5px; }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand-name { font-family: var(--font-heading); font-weight: 900; font-size: 20px; letter-spacing: -0.8px; }
 
     /* Desktop Navigation */
     .nav-desktop ul { display: flex; gap: 4px; }
-    .nav-desktop a { color: var(--muted); font-size: 13.5px; font-weight: 600; padding: 8px 16px; border-radius: 100px; transition: 0.2s; }
-    .nav-desktop a:hover { color: #fff; background: rgba(255,255,255,0.05); }
-    .nav-desktop a.active { color: var(--accent); }
+    .nav-desktop a { color: var(--muted); font-size: 14px; font-weight: 600; padding: 10px 18px; border-radius: 100px; }
+    .nav-desktop a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+    .nav-desktop a.active { color: var(--accent); background: rgba(var(--accent-rgb), 0.1); }
 
     /* Header Actions */
-    .header-actions { display: flex; align-items: center; justify-content: flex-end; gap: 12px; }
+    .header-actions { display: flex; align-items: center; justify-content: flex-end; gap: 16px; }
     
-    .lang-toggle { display: flex; background: rgba(255,255,255,0.03); padding: 2px; border-radius: 100px; border: 1px solid var(--border); }
-    .lang-toggle button { background: none; border: none; color: var(--muted); font-size: 10px; font-weight: 800; padding: 6px 10px; border-radius: 100px; cursor: pointer; transition: 0.2s; }
-    .lang-toggle button.active { background: var(--accent); color: #07203a; }
+    .lang-toggle { display: flex; background: rgba(255,255,255,0.04); padding: 3px; border-radius: 100px; border: 1px solid var(--border); }
+    .lang-toggle button { background: none; border: none; color: var(--muted); font-size: 11px; font-weight: 800; padding: 6px 12px; border-radius: 100px; cursor: pointer; transition: 0.3s; }
+    .lang-toggle button.active { background: var(--accent); color: #030509; }
 
-    .btn-pill { background: var(--accent); color: #07203a; font-weight: 700; padding: 10px 20px; border-radius: 100px; font-size: 13px; border: none; cursor: pointer; transition: 0.3s; }
-    .btn-pill:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(var(--accent-rgb), 0.3); }
-    .btn-ghost { background: rgba(255,255,255,0.05); color: #fff; border: 1px solid var(--border); }
+    .btn-pill { 
+      background: var(--accent); color: #030509; font-weight: 800; padding: 12px 24px; border-radius: 100px; font-size: 14px; 
+      border: none; cursor: pointer; transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .btn-pill:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 24px rgba(var(--accent-rgb), 0.3); }
+    .btn-pill:active { transform: translateY(-1px); }
+    .btn-ghost { background: rgba(255,255,255,0.06); color: #fff; border: 1px solid var(--border); }
+    .btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
 
-    .hamb-btn { display: none; background: none; border: none; cursor: pointer; width: 40px; height: 40px; flex-direction: column; justify-content: center; align-items: center; gap: 5px; }
-    .hamb-btn span { display: block; width: 20px; height: 2px; background: #fff; border-radius: 2px; }
+    .hamb-btn { display: none; background: none; border: none; cursor: pointer; padding: 8px; flex-direction: column; gap: 6px; }
+    .hamb-btn span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; transition: 0.3s; }
 
-    /* -------------------------
-       Mobile Menu Overlay
-       ------------------------- */
+    /* Mobile Menu Overlay */
     #mobile-overlay {
       position: fixed; inset: 0; z-index: 200; width: 100vw; height: 100vh;
-      background: rgba(3, 6, 11, 0.98); backdrop-filter: blur(40px);
+      background: rgba(3, 5, 9, 0.98); backdrop-filter: blur(40px);
       display: flex; flex-direction: column; padding: 120px 40px 40px;
-      transform: translateY(-100%); transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1);
+      transform: translateY(-100%); transition: transform 0.7s cubic-bezier(0.85, 0, 0.15, 1);
       visibility: hidden;
     }
     body.nav-open #mobile-overlay { transform: translateY(0); visibility: visible; }
-    
-    .mobile-nav-links { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 20px; }
-    .mobile-nav-links li { opacity: 0; transform: translateY(20px); transition: 0.5s; }
-    body.nav-open .mobile-nav-links li { opacity: 1; transform: translateY(0); }
-    .mobile-nav-links a { font-size: clamp(32px, 8vh, 48px); font-weight: 900; color: #fff; display: flex; justify-content: space-between; align-items: center; }
-    .mobile-nav-links a::after { content: "→"; color: var(--accent); opacity: 0.3; font-weight: 400; }
+    .mobile-nav-links { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 24px; }
+    .mobile-nav-links a { font-family: var(--font-heading); font-size: 40px; font-weight: 800; color: #fff; display: flex; justify-content: space-between; align-items: center; }
+    .mobile-nav-links a::after { content: "north_east"; font-family: 'Material Symbols Rounded'; font-size: 24px; color: var(--accent); opacity: 0.4; }
 
-    .mobile-footer { border-top: 1px solid var(--border); padding-top: 32px; display: flex; flex-direction: column; gap: 20px; }
-
-    /* -------------------------
-       Hero Section
-       ------------------------- */
-    .hero { padding-top: 130px; padding-bottom: 60px; }
-    .hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: center; }
-    h1 { font-size: clamp(40px, 8vw, 72px); line-height: 1; font-weight: 900; letter-spacing: -3px; margin-bottom: 24px; background: linear-gradient(to bottom, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .hero-desc { color: var(--muted); font-size: 19px; line-height: 1.6; margin-bottom: 40px; max-width: 550px; }
+    /* Hero Section */
+    .hero { padding-top: 180px; padding-bottom: 80px; }
+    .hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center; }
+    h1 { font-family: var(--font-accent); font-size: clamp(44px, 8vw, 84px); line-height: 0.95; font-weight: 800; letter-spacing: -2px; margin-bottom: 28px; background: linear-gradient(to bottom, #fff, #8e9db3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-desc { color: var(--muted); font-size: 20px; line-height: 1.6; margin-bottom: 44px; max-width: 540px; font-weight: 400; }
     .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
-    .app-preview img { width: 100%; height: auto; border-radius: 32px; box-shadow: 0 50px 100px -20px rgba(0,0,0,0.6); border: 1px solid var(--border); }
-
-    /* -------------------------
-       Feature Grid
-       ------------------------- */
-    .section-title { text-align: center; margin-bottom: 48px; }
-    .section-title h2 { font-size: 32px; font-weight: 800; margin-bottom: 12px; }
-    .section-title p { color: var(--muted); }
-
-    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 80px; }
-    .f-card { background: var(--surface); border: 1px solid var(--border); padding: 32px; border-radius: var(--radius-lg); transition: 0.4s; }
-    .f-card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
-    .f-icon { width: 48px; height: 48px; background: rgba(var(--accent-rgb), 0.1); border-radius: var(--radius-sm); color: var(--accent); display: grid; place-items: center; margin-bottom: 24px; }
-    .f-card h3 { font-size: 19px; margin-bottom: 12px; }
-    .f-card p { color: var(--muted); font-size: 15px; line-height: 1.6; }
-
-    /* -------------------------
-       Pricing & Beta
-       ------------------------- */
-    .price-card { max-width: 480px; margin: 0 auto 80px; background: linear-gradient(145deg, #0a1018, #05080d); border: 1px solid var(--accent); padding: 48px; border-radius: 32px; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
-    .price-amount { font-size: 64px; font-weight: 900; margin-bottom: 8px; letter-spacing: -2px; }
-    .price-sub { color: var(--muted); margin-bottom: 32px; font-weight: 500; }
     
-    .beta-banner { background: var(--surface); border: 1px solid var(--border); padding: 64px; border-radius: 40px; text-align: center; }
-    .beta-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(var(--accent-rgb), 0.1); color: var(--accent); padding: 6px 16px; border-radius: 100px; font-size: 12px; font-weight: 800; margin-bottom: 20px; text-transform: uppercase; }
+    .app-preview { perspective: 1200px; display: flex; justify-content: center; }
+    .app-preview img { 
+      width: 100%; max-width: 320px; height: auto; border-radius: 40px; 
+      box-shadow: 0 40px 100px -20px rgba(0,0,0,0.7), 0 0 0 1px var(--border);
+      transition: transform 0.2s ease-out;
+    }
 
+    /* Feature Grid */
+    section { padding: 100px 0; }
+    .section-title { text-align: center; margin-bottom: 64px; }
+    .section-title h2 { font-family: var(--font-heading); font-size: clamp(32px, 5vw, 44px); font-weight: 800; margin-bottom: 16px; letter-spacing: -1px; }
+    .section-title p { color: var(--muted); font-size: 18px; }
+
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+    .f-card { background: var(--surface); border: 1px solid var(--border); padding: 40px; border-radius: var(--radius-lg); transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+    .f-card::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at top right, rgba(var(--accent-rgb), 0.05), transparent 60%); opacity: 0; transition: 0.5s; }
+    .f-card:hover { border-color: rgba(var(--accent-rgb), 0.3); transform: translateY(-8px); box-shadow: 0 24px 48px rgba(0,0,0,0.4); }
+    .f-card:hover::before { opacity: 1; }
+    .f-icon { width: 56px; height: 56px; background: rgba(var(--accent-rgb), 0.12); border-radius: var(--radius-sm); color: var(--accent); display: grid; place-items: center; margin-bottom: 28px; }
+    .f-card h3 { font-family: var(--font-heading); font-size: 20px; margin-bottom: 14px; }
+    .f-card p { color: var(--muted); font-size: 16px; line-height: 1.6; }
+
+    /* Pricing */
+    .price-card { max-width: 520px; margin: 0 auto; background: linear-gradient(165deg, #0d1628, #05080f); border: 1px solid rgba(var(--accent-rgb), 0.4); padding: 60px 48px; border-radius: 40px; text-align: center; box-shadow: 0 40px 80px rgba(0,0,0,0.6); position: relative; }
+    .price-card::after { content: "MEILLEUR CHOIX"; position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #000; font-size: 11px; font-weight: 900; padding: 6px 16px; border-radius: 100px; letter-spacing: 1px; }
+    .price-amount { font-family: var(--font-heading); font-size: 72px; font-weight: 900; margin-bottom: 8px; letter-spacing: -3px; }
+    .price-amount span { font-size: 24px; opacity: 0.5; font-weight: 700; }
+    .price-sub { color: var(--muted); margin-bottom: 40px; font-weight: 600; font-size: 18px; }
+    
     /* Footer */
-    footer { padding: 60px 0; border-top: 1px solid var(--border); text-align: center; }
-    .footer-links { display: flex; justify-content: center; gap: 24px; margin-top: 24px; color: var(--muted); font-size: 14px; }
+    footer { padding: 80px 0; border-top: 1px solid var(--border); text-align: center; }
+    .footer-links { display: flex; justify-content: center; gap: 32px; margin-top: 32px; color: var(--muted); font-size: 14px; font-weight: 500; }
     .footer-links a:hover { color: var(--accent); }
 
     /* Back to Top */
-    #btt { position: fixed; bottom: 40px; right: 40px; width: 56px; height: 56px; background: rgba(var(--accent-rgb), 0.15); backdrop-filter: blur(10px); border: 1px solid var(--border); border-radius: 50%; color: var(--accent); display: grid; place-items: center; cursor: pointer; z-index: 90; opacity: 0; visibility: hidden; transition: 0.4s; }
+    #btt { position: fixed; bottom: 40px; right: 40px; width: 60px; height: 60px; background: rgba(var(--accent-rgb), 0.2); backdrop-filter: blur(16px); border: 1px solid var(--border); border-radius: 50%; color: var(--accent); display: grid; place-items: center; cursor: pointer; z-index: 90; opacity: 0; visibility: hidden; transition: 0.4s; }
     #btt.show { opacity: 1; visibility: visible; }
-    #btt:hover { background: var(--accent); color: #07203a; }
+    #btt:hover { background: var(--accent); color: #030509; transform: scale(1.1); }
 
     /* Responsive */
     @media (max-width: 950px) {
       .nav-desktop, #cta-main { display: none !important; }
       .hamb-btn { display: flex; }
-      .header-inner { grid-template-columns: 1fr 1fr; padding-right: 8px; }
-      .hero { padding-top: 100px; padding-bottom: 40px; }
+      .header-inner { grid-template-columns: 1fr 1fr; padding-right: 12px; }
+      .hero { padding-top: 140px; padding-bottom: 60px; }
       .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
-      .f-card p { display: none; } /* Compact mobile list view */
-      .f-card { display: flex; align-items: center; gap: 16px; padding: 20px; }
-      .f-icon { margin-bottom: 0; flex-shrink: 0; }
+      .hero-btns { justify-content: center; }
+      .hero-desc { margin-inline: auto; }
+      .f-card { display: flex; align-items: center; gap: 20px; padding: 24px; }
+      .f-icon { margin-bottom: 0; flex-shrink: 0; width: 48px; height: 48px; }
+      .f-card p { display: none; }
     }
 
-    .modal { position: fixed; inset: 0; z-index: 300; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); display: grid; place-items: center; padding: 20px; opacity: 0; visibility: hidden; transition: 0.3s; }
+    .modal { position: fixed; inset: 0; z-index: 300; background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); display: grid; place-items: center; padding: 20px; opacity: 0; visibility: hidden; transition: 0.4s; }
     .modal.open { opacity: 1; visibility: visible; }
-    .modal-box { width: 100%; max-width: 640px; background: #080c14; border-radius: 24px; border: 1px solid var(--border); overflow: hidden; transform: translateY(20px); transition: 0.4s; }
-    .modal.open .modal-box { transform: translateY(0); }
-    .modal-header { padding: 20px 24px; display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); }
-    iframe { width: 100%; height: 500px; border: none; }
+    .modal-box { width: 100%; max-width: 700px; background: #0a111f; border-radius: 32px; border: 1px solid var(--border); overflow: hidden; transform: scale(0.95); transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+    .modal.open .modal-box { transform: scale(1); }
+    .modal-header { padding: 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
+    iframe { width: 100%; height: 550px; border: none; }
   </style>
 </head>
 <body>
@@ -193,14 +208,14 @@
   <div class="top-blur-fade"></div>
   <div class="bg-visual"><div class="bg-glow"></div><div class="bg-glow-2"></div></div>
 
-  <button id="btt"><span class="material-symbols-rounded">arrow_upward</span></button>
+  <button id="btt" aria-label="Retour en haut"><span class="material-symbols-rounded">arrow_upward</span></button>
 
   <header id="navbar">
     <div class="container">
       <div class="header-inner">
         <div class="brand">
           <a href="#" class="brand">
-            <img src="Logo_Choloto_509.png" alt="CHOLOTO Logo" style="height: 36px; width: auto; border-radius: 8px;">
+            <img src="Logo_Choloto_509.png" alt="CHOLOTO Logo" style="height: 40px; width: auto; border-radius: 10px;">
             <span class="brand-name">CHOLOTO</span>
           </a>
         </div>
@@ -216,11 +231,11 @@
         <div class="header-actions">
           <div class="lang-toggle">
             <button data-lang="fr" class="active">FR</button>
-            <button data-lang="ht">KR</button>
+            <button data-lang="ht">HT</button>
             <button data-lang="en">EN</button>
           </div>
           <a href="http://choloto.flutterflow.app" class="btn-pill" id="cta-main">App Web</a>
-          <button class="hamb-btn" id="open-m">
+          <button class="hamb-btn" id="open-m" aria-label="Menu">
             <span></span><span></span>
           </button>
         </div>
@@ -237,8 +252,8 @@
       <li><a href="#contact" data-t="nav_contact">Contact</a></li>
     </ul>
     <div class="mobile-footer">
-      <a href="http://choloto.flutterflow.app" class="btn-pill" style="height:64px; display:grid; place-items:center; font-size:16px;">Lancer CHOLOTO Web</a>
-      <div style="display:flex; justify-content:center; gap:32px; color:var(--muted); font-size:14px;">
+      <a href="http://choloto.flutterflow.app" class="btn-pill" style="height:64px; width:100%; font-size:16px;">Lancer CHOLOTO Web</a>
+      <div style="display:flex; justify-content:center; gap:32px; margin-top:32px; color:var(--muted); font-size:14px;">
         <a href="mailto:contact@choloto.com">Email</a>
         <a href="tel:+50943560633">Support</a>
       </div>
@@ -247,17 +262,17 @@
 
   <main class="container">
     <!-- Hero -->
-    <section class="hero" id="home">
+    <section class="hero reveal" id="home">
       <div class="hero-grid">
         <div>
           <h1 data-t="hero_title">Optimisez vos chances.</h1>
-          <p class="hero-desc" data-t="hero_desc">Accédez aux résultats officiels, prédictions algorithmiques et outils exclusifs (Tchala, Saints) dans une interface ultra-rapide.</p>
-          <div class="hero-btns">
-            <a href="#" class="btn-pill" style="background:#3DDC84; color:#07203a; display:flex; gap:8px;"><span class="material-symbols-rounded">android</span> Google Play</a>
-            <a href="#" class="btn-pill btn-ghost" style="display:flex; gap:8px;"><span class="material-symbols-rounded">phone_iphone</span> App Store</a>
+          <p class="hero-desc" data-t="hero_desc">Accédez aux résultats officiels, prédictions algorithmiques et outils exclusifs dans une interface ultra-rapide.</p>
+          <div class="hero-btns stagger-1">
+            <a href="#" class="btn-pill" style="background:#3DDC84; color:#030509;"><span class="material-symbols-rounded">android</span> Google Play</a>
+            <a href="#" class="btn-pill btn-ghost"><span class="material-symbols-rounded">phone_iphone</span> App Store</a>
           </div>
         </div>
-        <div class="app-preview">
+        <div class="app-preview stagger-2">
           <img src="mockup.jpg" alt="CHOLOTO Preview" />
         </div>
       </div>
@@ -265,75 +280,77 @@
 
     <!-- Features -->
     <section id="features">
-      <div class="section-title">
+      <div class="section-title reveal">
         <h2 data-t="f_results_title">Fonctionnalités Clés</h2>
         <p data-t="f_results_desc">Tout ce dont vous avez besoin pour maîtriser vos jeux.</p>
       </div>
       <div class="features-grid">
-        <div class="f-card">
+        <div class="f-card reveal stagger-1">
           <div class="f-icon"><span class="material-symbols-rounded">history</span></div>
           <h3>Résultats Live</h3>
-          <p>Suivez les tirages en temps réel avec un historique complet et détaillé.</p>
+          <p>Suivez les tirages en temps réel avec un historique complet et détaillé de toutes les loteries.</p>
         </div>
-        <div class="f-card">
+        <div class="f-card reveal stagger-2">
           <div class="f-icon"><span class="material-symbols-rounded">auto_graph</span></div>
           <h3>Prédictions VIP</h3>
-          <p>Utilisez nos algorithmes basés sur les probabilités pour guider vos choix.</p>
+          <p>Utilisez nos algorithmes avancés basés sur les probabilités pour guider vos choix quotidiens.</p>
         </div>
-        <div class="f-card">
+        <div class="f-card reveal stagger-3">
           <div class="f-icon"><span class="material-symbols-rounded">menu_book</span></div>
           <h3>Tchala Digital</h3>
-          <p>Interprétez vos rêves et trouvez les numéros correspondants instantanément.</p>
+          <p>Interprétez vos rêves et trouvez les numéros correspondants instantanément avec notre base de données.</p>
         </div>
-        <div class="f-card">
+        <div class="f-card reveal stagger-1">
           <div class="f-icon"><span class="material-symbols-rounded">stars</span></div>
           <h3>Annuaire des Saints</h3>
-          <p>Consultez la liste des Saints et les numéros de chance associés.</p>
+          <p>Consultez la liste exhaustive des Saints et découvrez les numéros de chance qui leur sont associés.</p>
         </div>
-        <div class="f-card">
+        <div class="f-card reveal stagger-2">
           <div class="f-icon"><span class="material-symbols-rounded">account_balance_wallet</span></div>
           <h3>Paiements Haïti</h3>
-          <p>Abonnez-vous facilement via MonCash ou Natcash en quelques secondes.</p>
+          <p>Abonnez-vous en toute simplicité via MonCash ou Natcash en quelques secondes seulement.</p>
         </div>
-        <div class="f-card">
+        <div class="f-card reveal stagger-3">
           <div class="f-icon"><span class="material-symbols-rounded">notifications_active</span></div>
           <h3>Alertes Smart</h3>
-          <p>Recevez une notification push dès que les résultats sont disponibles.</p>
+          <p>Soyez le premier averti avec une notification push immédiate dès que les résultats tombent.</p>
         </div>
       </div>
     </section>
 
     <!-- Pricing -->
     <section id="membership">
-      <div class="price-card">
-        <div class="beta-badge" data-t="mem_ht_badge">Plan Recommandé</div>
-        <h2 data-t="mem_title">Abonnement Premium</h2>
+      <div class="price-card reveal">
+        <h2 data-t="mem_title" style="font-family:var(--font-heading); font-size:32px; margin-bottom:16px;">Abonnement Premium</h2>
         <div class="price-amount" id="val-p">2,500<span>.00</span></div>
         <p class="price-sub" id="cur-p">Gourdes / mois</p>
-        <ul style="text-align:left; margin-bottom:32px; color:var(--muted); font-size:15px; display:grid; gap:12px;">
-          <li style="display:flex; gap:8px;"><span class="material-symbols-rounded" style="color:var(--accent); font-size:18px;">check_circle</span> Prédictions quotidiennes illimitées</li>
-          <li style="display:flex; gap:8px;"><span class="material-symbols-rounded" style="color:var(--accent); font-size:18px;">check_circle</span> Accès complet au Tchala VIP</li>
-          <li style="display:flex; gap:8px;"><span class="material-symbols-rounded" style="color:var(--accent); font-size:18px;">check_circle</span> Support prioritaire 24/7</li>
+        <ul style="text-align:left; margin-bottom:40px; color:var(--muted); font-size:16px; display:grid; gap:16px;">
+          <li style="display:flex; gap:12px;"><span class="material-symbols-rounded" style="color:var(--accent);">check_circle</span> Prédictions quotidiennes illimitées</li>
+          <li style="display:flex; gap:12px;"><span class="material-symbols-rounded" style="color:var(--accent);">check_circle</span> Accès complet au Tchala VIP</li>
+          <li style="display:flex; gap:12px;"><span class="material-symbols-rounded" style="color:var(--accent);">check_circle</span> Support prioritaire 24h/24 & 7j/7</li>
         </ul>
-        <button class="btn-pill" style="width:100%; height:56px;">Activer mon accès Premium</button>
-        <button id="sw-price" style="margin-top:20px; background:none; border:none; color:var(--accent); font-weight:700; cursor:pointer; text-decoration:underline; font-size:12px;">Passer en USD</button>
+        <button class="btn-pill" style="width:100%; height:60px; font-size:16px;">Activer mon accès Premium</button>
+        <button id="sw-price" style="margin-top:24px; background:none; border:none; color:var(--accent); font-weight:800; cursor:pointer; text-decoration:underline; font-size:13px; text-transform:uppercase; letter-spacing:1px;">Passer en USD</button>
       </div>
     </section>
 
     <!-- Beta -->
-    <section class="beta-banner" id="contact">
-      <div class="beta-badge"><span class="material-symbols-rounded" style="font-size:16px">android</span> Android Beta</div>
-      <h2 style="font-size:32px; margin-bottom:16px;">Testez CHOLOTO en avant-première</h2>
-      <p class="muted" style="margin-bottom:32px; max-width:600px; margin-inline:auto;">Rejoignez notre programme de testeurs et aidez-nous à façonner l'avenir de la loterie digitale en Haïti.</p>
-      <button class="btn-pill" id="open-beta" style="padding:16px 40px;">S'inscrire à la Bêta</button>
+    <section id="contact">
+      <div class="reveal" style="background: var(--surface); border: 1px solid var(--border); padding: 80px 40px; border-radius: 48px; text-align: center; position: relative; overflow: hidden;">
+        <div style="position:absolute; top:0; left:0; width:100%; height:100%; background:radial-gradient(circle at 50% 0%, rgba(var(--accent-rgb), 0.1), transparent 70%); pointer-events:none;"></div>
+        <div class="beta-badge" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(var(--accent-rgb), 0.1); color: var(--accent); padding: 8px 20px; border-radius: 100px; font-size: 12px; font-weight: 900; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px;"><span class="material-symbols-rounded" style="font-size:18px">android</span> Android Beta</div>
+        <h2 style="font-family:var(--font-heading); font-size:clamp(28px, 5vw, 40px); margin-bottom:20px; letter-spacing:-1px;">Testez CHOLOTO en avant-première</h2>
+        <p style="color:var(--muted); margin-bottom:40px; max-width:600px; margin-inline:auto; font-size:18px;">Rejoignez notre programme exclusif et aidez-nous à bâtir l'avenir de la loterie digitale en Haïti.</p>
+        <button class="btn-pill" id="open-beta" style="padding:18px 48px; font-size:16px;">S'inscrire à la Bêta</button>
+      </div>
     </section>
 
     <footer>
-      <div class="brand" style="justify-content:center; margin-bottom:24px;">
-        <img src="Logo_Choloto_509.png" alt="CHOLOTO Logo" style="height: 40px; width: auto; border-radius: 8px;">
-        <span class="brand-name">CHOLOTO</span>
+      <div class="brand" style="justify-content:center; margin-bottom:32px;">
+        <img src="Logo_Choloto_509.png" alt="CHOLOTO Logo" style="height: 48px; width: auto; border-radius: 12px;">
+        <span class="brand-name" style="font-size:24px;">CHOLOTO</span>
       </div>
-      <p class="muted" style="font-size:14px;">&copy; <span id="year"></span> CHOLOTO. Dòmi pòv, leve rich.</p>
+      <p style="color:var(--muted); font-size:14px; font-weight:500;">&copy; <span id="year"></span> CHOLOTO. Dòmi pòv, leve rich.</p>
       <div class="footer-links">
         <a href="mailto:contact@choloto.com">contact@choloto.com</a>
         <a href="tel:+50943560633">+509 43 56 0633</a>
@@ -346,7 +363,7 @@
   <div class="modal" id="m-beta">
     <div class="modal-box">
       <div class="modal-header">
-        <span style="font-weight:800;">Inscription Bêta</span>
+        <span style="font-family:var(--font-heading); font-weight:800; font-size:18px;">Inscription Bêta</span>
         <button id="close-modal" style="background:none;border:none;color:#fff;cursor:pointer;"><span class="material-symbols-rounded">close</span></button>
       </div>
       <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSclwAthSfQ2Nb-TORVqIEFg71Yr6YdANOWMxFjAJEsTh7zCjA/viewform?embedded=true">Chargement…</iframe>
@@ -355,9 +372,9 @@
 
   <script>
     const translations = {
-      fr: { nav_features: "Fonctions", nav_membership: "Abonnement", nav_contact: "Contact", hero_title: "Optimisez vos chances.", mem_ht_badge: "Plan Recommandé" },
-      ht: { nav_features: "Fonksyon", nav_membership: "Abònman", nav_contact: "Kontak", hero_title: "Ogmante chans ou.", mem_ht_badge: "Pi bon chwa" },
-      en: { nav_features: "Features", nav_membership: "Pricing", nav_contact: "Contact", hero_title: "Optimize your odds.", mem_ht_badge: "Best Value" }
+      fr: { nav_features: "Fonctions", nav_membership: "Abonnement", nav_contact: "Contact", hero_title: "Optimisez vos chances.", hero_desc: "Accédez aux résultats officiels, prédictions algorithmiques et outils exclusifs dans une interface ultra-rapide.", f_results_title: "Fonctionnalités Clés", f_results_desc: "Tout ce dont vous avez besoin pour maîtriser vos jeux.", mem_title: "Abonnement Premium" },
+      ht: { nav_features: "Fonksyon", nav_membership: "Abònman", nav_contact: "Kontak", hero_title: "Ogmante chans ou.", hero_desc: "Jwenn rezilta ofisyèl, prediksyon ak tout zouti ekskizif yo nan yon bèl koòdone ki rapid anpil.", f_results_title: "Fonksyonalite Yo", f_results_desc: "Tout sa ou bezwen pou ou mèt nan jwèt la.", mem_title: "Abònman Premium" },
+      en: { nav_features: "Features", nav_membership: "Pricing", nav_contact: "Contact", hero_title: "Optimize your odds.", hero_desc: "Access official results, algorithmic predictions and exclusive tools in a lightning-fast interface.", f_results_title: "Key Features", f_results_desc: "Everything you need to master your games.", mem_title: "Premium Membership" }
     };
 
     function setLang(l) {
@@ -368,11 +385,13 @@
     document.querySelectorAll('.lang-toggle button').forEach(b => b.onclick = () => setLang(b.dataset.lang));
     setLang(localStorage.getItem('choloto-lang') || 'fr');
 
+    const navbar = document.getElementById('navbar');
+    const btt = document.getElementById('btt');
     window.onscroll = () => {
-      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
-      document.getElementById('btt').classList.toggle('show', window.scrollY > 400);
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+      btt.classList.toggle('show', window.scrollY > 600);
     };
-    document.getElementById('btt').onclick = () => window.scrollTo({top:0, behavior:'smooth'});
+    btt.onclick = () => window.scrollTo({top:0, behavior:'smooth'});
 
     const toggleM = () => { document.body.classList.toggle('nav-open'); };
     document.getElementById('open-m').onclick = toggleM;
@@ -381,7 +400,7 @@
 
     document.getElementById('sw-price').onclick = function() {
       const isGds = this.textContent.includes('USD');
-      document.getElementById('val-p').innerHTML = isGds ? '60<span>.00</span>' : '2,500<span>.00</span>';
+      document.getElementById('val-p').innerHTML = isGds ? '20<span>.00</span>' : '2,500<span>.00</span>';
       document.getElementById('cur-p').textContent = isGds ? 'USD / month' : 'Gourdes / mois';
       this.textContent = isGds ? 'Passer en Gourdes' : 'Passer en USD';
     };
@@ -392,8 +411,33 @@
     modal.onclick = (e) => { if(e.target === modal) modal.classList.remove('open'); };
 
     document.getElementById('year').textContent = new Date().getFullYear();
-    const observer = new IntersectionObserver(ents => ents.forEach(en => { if(ents[0].isIntersecting) en.target.classList.add('in-view'); }), {threshold:0.1});
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Intersection Observer for Reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Parallax Effect
+    const card = document.querySelector('.app-preview img');
+    const container = document.querySelector('.app-preview');
+    if (card && container) {
+      container.addEventListener('mousemove', (e) => {
+        if (window.innerWidth < 950) return;
+        const rect = container.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = `rotateY(${x * 20}deg) rotateX(${y * -20}deg) scale(1.05)`;
+      });
+      container.addEventListener('mouseleave', () => {
+        card.style.transform = `rotateY(0deg) rotateX(0deg) scale(1)`;
+      });
+    }
   </script>
 </body>
 </html>
