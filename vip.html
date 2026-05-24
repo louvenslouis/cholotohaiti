@@ -127,11 +127,139 @@
     footer { padding: 60px 0; border-top: 1px solid var(--border); text-align: center; color: var(--muted); font-size: 14px; }
     footer a { color: var(--muted); margin: 0 10px; }
     footer a:hover { color: var(--accent); }
+
+    /* ── Age Gate Overlay ── */
+    #age-gate {
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(3, 5, 9, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      transition: opacity 0.5s ease;
+    }
+    #age-gate.hidden { opacity: 0; pointer-events: none; }
+
+    .age-card {
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 28px;
+      padding: 48px 40px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 32px 64px rgba(0,0,0,0.5), 0 0 120px rgba(var(--accent-rgb), 0.06);
+      animation: slideUp 0.5s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .age-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      border-radius: 28px 28px 0 0;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+    .age-icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .age-title {
+      font-family: var(--font-accent);
+      font-size: 28px;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .age-desc {
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    /* Custom Checkbox */
+    .check-label {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 18px;
+      cursor: pointer;
+      margin-bottom: 28px;
+      text-align: left;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .check-label:hover { border-color: rgba(var(--accent-rgb), 0.4); background: rgba(var(--accent-rgb), 0.04); }
+    .check-label input[type='checkbox'] { display: none; }
+    .check-box {
+      width: 22px; height: 22px; flex-shrink: 0;
+      border: 2px solid rgba(255,255,255,0.2);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.25s;
+      background: transparent;
+    }
+    .check-label input:checked ~ .check-text-wrap .check-box,
+    .check-label.checked .check-box {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+    .check-mark { display: none; font-size: 14px; color: #030509; font-weight: 900; }
+    .check-label.checked .check-mark { display: block; }
+    .check-text { font-size: 14px; color: #f1f5f9; font-weight: 500; }
+    .check-text span { color: var(--accent); font-weight: 700; }
+
+    .age-actions { display: flex; flex-direction: column; gap: 12px; }
+    #btn-confirm {
+      background: var(--accent); color: #030509;
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 15px; padding: 16px 24px;
+      border: none; border-radius: 100px; cursor: pointer;
+      transition: 0.3s cubic-bezier(0.16,1,0.3,1);
+      opacity: 0.4; pointer-events: none;
+    }
+    #btn-confirm.active { opacity: 1; pointer-events: auto; }
+    #btn-confirm.active:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(var(--accent-rgb),0.35); }
+    #btn-decline {
+      background: none; border: none;
+      color: var(--muted); font-size: 13px;
+      cursor: pointer; text-decoration: underline;
+      font-family: var(--font-main); padding: 4px;
+      transition: color 0.2s;
+    }
+    #btn-decline:hover { color: #fff; }
   </style>
 </head>
 <body>
 
   <div class="bg-visual"><div class="bg-glow"></div></div>
+
+  <!-- Age Verification Gate -->
+  <div id="age-gate">
+    <div class="age-card">
+      <span class="age-icon">🔞</span>
+      <h2 class="age-title">Vérification d'âge</h2>
+      <p class="age-desc">L'accès VIP CHOLOTO est réservé aux personnes majeures.<br>Veuillez confirmer votre âge avant de continuer.</p>
+
+      <label class="check-label" id="check-label" onclick="toggleCheck()">
+        <div class="check-box">
+          <span class="check-mark">✓</span>
+        </div>
+        <span class="check-text">Je confirme avoir <span>18 ans ou plus</span> et accepte les conditions d'utilisation.</span>
+      </label>
+
+      <div class="age-actions">
+        <button id="btn-confirm" onclick="confirmAge()">Accéder au formulaire VIP →</button>
+        <button id="btn-decline" onclick="window.location.href='index.html'">Je n'ai pas 18 ans — Retour</button>
+      </div>
+    </div>
+  </div>
 
   <header>
     <div class="container header-inner">
@@ -178,14 +306,31 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-    
+
+    // ── Age Gate ──
+    let ageChecked = false;
+
+    function toggleCheck() {
+      ageChecked = !ageChecked;
+      const label = document.getElementById('check-label');
+      const btn   = document.getElementById('btn-confirm');
+      label.classList.toggle('checked', ageChecked);
+      btn.classList.toggle('active', ageChecked);
+    }
+
+    function confirmAge() {
+      if (!ageChecked) return;
+      const gate = document.getElementById('age-gate');
+      gate.classList.add('hidden');
+      setTimeout(() => gate.remove(), 500);
+    }
+
+    // ── Form Loader ──
     function hideLoader() {
       const loader = document.getElementById('loader');
       if (loader) {
         loader.style.opacity = '0';
-        setTimeout(() => {
-          loader.style.display = 'none';
-        }, 500);
+        setTimeout(() => { loader.style.display = 'none'; }, 500);
       }
     }
   </script>
