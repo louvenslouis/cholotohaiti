@@ -6,108 +6,133 @@
   <title>CHOLOTO — Page introuvable</title>
 
   <link rel="icon" type="image/x-icon" href="Logo_Choloto_509.ico?v=3" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800;900&family=Syne:wght@800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800;900&family=Syne:wght@800&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #030509;
-      --surface: #0a111f;
-      --accent: #F8BB00;
-      --accent-rgb: 248, 187, 0;
-      --muted: #8e9db3;
-      --border: rgba(255,255,255,0.06);
-      --glass: rgba(10, 17, 31, 0.7);
-      --font-main: 'Inter', sans-serif;
-      --font-heading: 'Outfit', sans-serif;
-      --font-accent: 'Syne', sans-serif;
+      --bg:#030509;
+      --surface:#0a111f;
+      --accent:#F8BB00;
+      --accent-rgb:248,187,0;
+      --muted:#8e9db3;
+      --border:rgba(255,255,255,0.06);
+      --glass:rgba(10,17,31,0.7);
+      --font-main:'Inter',sans-serif;
+      --font-heading:'Outfit',sans-serif;
+      --font-accent:'Syne',sans-serif;
     }
 
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      background: var(--bg);
-      color: #fff;
-      font-family: var(--font-main);
-      height: 100vh;
-      overflow:hidden;
+    *{margin:0;padding:0;box-sizing:border-box}
+
+    body{
+      height:100vh;
       display:flex;
       align-items:center;
       justify-content:center;
+      background:var(--bg);
+      color:#fff;
+      font-family:var(--font-main);
+      overflow:hidden;
     }
 
-    .bg {
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at 30% 20%, rgba(var(--accent-rgb),0.12), transparent 60%),
-                  radial-gradient(circle at 70% 80%, rgba(56,189,248,0.08), transparent 60%);
-      filter: blur(40px);
+    .bg{
+      position:fixed;
+      inset:0;
+      background:
+        radial-gradient(circle at 25% 20%, rgba(var(--accent-rgb),0.12), transparent 60%),
+        radial-gradient(circle at 70% 80%, rgba(56,189,248,0.08), transparent 60%);
+      filter:blur(50px);
     }
 
-    .card {
-      position: relative;
+    .card{
+      position:relative;
+      width:calc(100% - 40px);
+      max-width:560px;
+      padding:50px 40px;
       text-align:center;
-      padding: 60px 40px;
-      border-radius: 32px;
-      background: var(--glass);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(20px);
-      max-width: 520px;
-      width: calc(100% - 40px);
-      box-shadow: 0 40px 120px rgba(0,0,0,0.6);
+      background:var(--glass);
+      border:1px solid var(--border);
+      border-radius:32px;
+      backdrop-filter:blur(20px);
+      box-shadow:0 40px 120px rgba(0,0,0,0.6);
     }
 
-    .code {
-      font-family: var(--font-accent);
-      font-size: 120px;
-      font-weight: 800;
-      line-height: 1;
-      background: linear-gradient(to bottom, #fff, #8e9db3);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    h1 {
-      font-family: var(--font-heading);
-      font-size: 28px;
-      margin-top: 10px;
-      margin-bottom: 12px;
-    }
-
-    p {
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.6;
-      margin-bottom: 32px;
-    }
-
-    .btn {
-      display:inline-flex;
-      align-items:center;
+    /* LOGO */
+    .logo{
+      display:flex;
       justify-content:center;
+      margin-bottom:18px;
+    }
+
+    .logo img{
+      height:54px;
+      border-radius:12px;
+    }
+
+    .code{
+      font-family:var(--font-accent);
+      font-size:110px;
+      font-weight:800;
+      background:linear-gradient(to bottom,#fff,#8e9db3);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      line-height:1;
+    }
+
+    h1{
+      font-family:var(--font-heading);
+      font-size:26px;
+      margin-top:10px;
+    }
+
+    p{
+      color:var(--muted);
+      margin:14px 0 28px;
+      font-size:15px;
+      line-height:1.6;
+    }
+
+    .btn{
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
       gap:10px;
-      padding: 14px 26px;
-      border-radius: 100px;
-      background: var(--accent);
+      padding:14px 26px;
+      border-radius:100px;
+      background:var(--accent);
       color:#000;
       font-weight:800;
       text-decoration:none;
       transition:0.3s;
     }
 
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(var(--accent-rgb),0.3);
+    .btn:hover{
+      transform:translateY(-3px);
+      box-shadow:0 12px 30px rgba(var(--accent-rgb),0.3);
     }
 
-    .secondary {
-      display:block;
-      margin-top:14px;
-      color: var(--muted);
-      font-size: 14px;
+    .links{
+      margin-top:28px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      font-size:14px;
+      color:var(--muted);
+    }
+
+    .links a{
+      color:var(--muted);
       text-decoration:none;
     }
 
-    .secondary:hover {
+    .links a:hover{
       color:#fff;
+    }
+
+    .small{
+      margin-top:10px;
+      font-size:13px;
+      opacity:0.8;
     }
   </style>
 </head>
@@ -116,14 +141,31 @@
   <div class="bg"></div>
 
   <div class="card">
+
+    <!-- LOGO -->
+    <div class="logo">
+      <img src="Logo_Choloto_509.png" alt="CHOLOTO Logo">
+    </div>
+
     <div class="code">404</div>
     <h1>Page introuvable</h1>
+
     <p>
-      La ressource demandée n’existe pas ou a été déplacée.
+      La page demandée n’existe pas ou a été déplacée.
     </p>
 
     <a class="btn" href="/">Retour à l’accueil</a>
-    <a class="secondary" href="https://choloto.com">choloto.com</a>
+
+    <!-- CONTACT INFO -->
+    <div class="links">
+      <a href="mailto:contact@choloto.com">contact@choloto.com</a>
+      <a href="tel:+50943560633">+509 43 56 0633</a>
+    </div>
+
+    <div class="small">
+      CHOLOTO — Dòmi pòv, leve rich
+    </div>
+
   </div>
 </body>
 </html>
