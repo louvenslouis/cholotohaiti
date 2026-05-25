@@ -13,10 +13,9 @@
   <meta property="og:image" content="Logo_Choloto_509.png" />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="Logo_Choloto_509.ico?v=3" />
-  <link rel="icon" type="image/png" sizes="32x32" href="Logo_Choloto_509.png?v=3" />
-  <link rel="icon" type="image/png" sizes="192x192" href="Logo_Choloto_509.png?v=3" />
-  <link rel="apple-touch-icon" sizes="180x180" href="Logo_Choloto_509.png?v=3" />
+  <link rel="icon" type="image/x-icon" href="Logo_Choloto_509.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="Logo_Choloto_509.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="Logo_Choloto_509.png" />
   
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -121,6 +120,36 @@
     .btn-pill:active { transform: translateY(-1px); }
     .btn-ghost { background: rgba(255,255,255,0.06); color: #fff; border: 1px solid var(--border); }
     .btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
+
+    /* Restoring Snake Animation to match Miniature exactly */
+    .btn-snake {
+      position: relative;
+      display: inline-flex;
+      padding: 3px;
+      border-radius: 100px;
+      overflow: hidden;
+      background: #030509;
+      isolation: isolate;
+      border: none;
+      width: 100%;
+    }
+    .btn-snake::before {
+      content: ""; position: absolute; top: -100%; left: -50%; width: 200%; height: 300%;
+      background: conic-gradient(transparent, var(--accent), #FF5F00, transparent 30%);
+      animation: rotate-border 4s linear infinite;
+      z-index: -1;
+    }
+    .btn-snake .btn-pill {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      border-radius: 100px;
+      margin: 0;
+    }
+    .btn-snake:hover {
+      transform: translateY(-3px) scale(1.01);
+    }
 
     .hamb-btn { display: none; background: none; border: none; cursor: pointer; padding: 8px; flex-direction: column; gap: 6px; }
     .hamb-btn span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; transition: 0.3s; }
@@ -371,7 +400,9 @@
           <li style="display:flex; gap:12px;"><span class="material-symbols-rounded" style="color:var(--accent);">check_circle</span> Accès complet au Tchala VIP</li>
           <li style="display:flex; gap:12px;"><span class="material-symbols-rounded" style="color:var(--accent);">check_circle</span> Support prioritaire 24h/24 & 7j/7</li>
         </ul>
-        <a href="vip.html" class="btn-pill" style="width:100%; height:60px; font-size:16px;">Activer mon accès VIP</a>
+        <div class="btn-snake" style="width:100%;">
+          <a href="vip.html" class="btn-pill" style="width:100%; height:60px; font-size:16px;">Activer mon accès VIP</a>
+        </div>
         <button id="sw-price" style="margin-top:24px; background:none; border:none; color:var(--accent); font-weight:800; cursor:pointer; text-decoration:underline; font-size:13px; text-transform:uppercase; letter-spacing:1px;">Passer en USD</button>
       </div>
     </section>
@@ -420,7 +451,9 @@
       </button>
       <img src="vipjuin.jpeg" alt="VIP Juin Flyer" style="width: 100%; display: block; border-bottom: 1px solid var(--border);">
       <div style="padding: 32px; text-align: center; background: linear-gradient(to bottom, var(--surface), #030509);">
-        <a href="vip.html" class="btn-pill" style="width: 100%; height: 56px; font-size: 16px;">S'inscrire</a>
+        <div class="btn-snake" style="width:100%;">
+          <a href="vip.html" class="btn-pill" style="width: 100%; height: 56px; font-size: 16px;">S'inscrire</a>
+        </div>
       </div>
     </div>
   </div>
