@@ -393,7 +393,7 @@
     <section id="membership">
       <div class="price-card reveal">
         <h2 data-t="mem_title" style="font-family:var(--font-heading); font-size:32px; margin-bottom:16px;">Abonnement Premium</h2>
-        <div class="price-amount" id="val-p">2,500<span>.00</span></div>
+        <div class="price-amount" id="val-p">2,000<span>.00</span></div>
         <p class="price-sub" id="cur-p">Gourdes / mois</p>
         <ul style="text-align:left; margin-bottom:40px; color:var(--muted); font-size:16px; display:grid; gap:16px;">
           <li style="display:flex; gap:12px;"><span class="material-symbols-rounded" style="color:var(--accent);">check_circle</span> Prédictions quotidiennes illimitées</li>
@@ -488,7 +488,7 @@
 
     document.getElementById('sw-price').onclick = function() {
       const isGds = this.textContent.includes('USD');
-      document.getElementById('val-p').innerHTML = isGds ? '20<span>.00</span>' : '2,500<span>.00</span>';
+      document.getElementById('val-p').innerHTML = isGds ? '40<span>.00</span>' : '2,000<span>.00</span>';
       document.getElementById('cur-p').textContent = isGds ? 'USD / month' : 'Gourdes / mois';
       this.textContent = isGds ? 'Passer en Gourdes' : 'Passer en USD';
     };
